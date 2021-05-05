@@ -31,7 +31,7 @@ def build_helper(out_dir, size_t=8):
     return out_path
 
 
-def get_libc_version(path):
+def get_libc_version(path,panda=None):
     '''Get the libc version.
 
     Args:
@@ -39,17 +39,20 @@ def get_libc_version(path):
     Returns:
         str: Libc version. Like '2.29', '2.26' ...
     '''
-    #content = subprocess.Popen(['strings', path], stdout=subprocess.PIPE).stdout.read()
-    #content = content.decode() #py3 problem
+    if panda:
+        content = path
+    else:
+        content = subprocess.Popen(['strings', path], stdout=subprocess.PIPE).stdout.read()
+        content = content.decode() #py3 problem
     pattern = "libc[- ]([0-9]+\.[0-9]+)"
-    result = re.findall(pattern, path)
+    result = re.findall(pattern, content)
     if result:
         return result[0]
     else:
         return ""
 
 
-def get_arena_info(arch,libc_path, ld_path):
+def get_arena_info(arch,libc_path, ld_path, panda=None):
     '''Get the main arena infomation of the libc.
 
     Args:
@@ -59,13 +62,13 @@ def get_arena_info(arch,libc_path, ld_path):
         dict: like {'main_arena_offset':0x1e430, 'tcache_enable':False}
     '''
     cur_dir = os.path.dirname(os.path.realpath(__file__))
-    #arch = get_arch(libc_path)
-    libc_version = get_libc_version(libc_path)
+    if not panda:
+        arch = get_arch(libc_path)
+    libc_version = get_libc_version(libc_path,panda=panda)
     dir_path = tempfile.mkdtemp()
     # use this to build helper
     # helper_path = build_helper(dir_path, size_t=size_t)
     # # use pre-compiled binary
-    print(f"LD IS {ld_path}")
     helper_path = "{dir}/libs/libc_info{arch}".format(dir=cur_dir, arch=arch)
     # libc name have to be libc.so.6
     shutil.copy(libc_path, os.path.join(dir_path, 'libc.so.6'))
@@ -114,7 +117,7 @@ def get_arena_info(arch,libc_path, ld_path):
 #    dc = json.JSONDecoder()
 #    return dc.decode(result)
 
-def get_libc_info(arch,libc_path, ld_path, arena_info):
+def get_libc_info(arch,libc_path, ld_path, arena_info=None, panda=None):
     '''Get the infomation of the libc.
     
     Args:
@@ -131,8 +134,11 @@ def get_libc_info(arch,libc_path, ld_path, arena_info):
         size_t = 4
     else:
         raise NotImplementedError
-    info = {'version': get_libc_version(libc_path)}
-    info.update(arena_info)
+    info = {'version': get_libc_version(libc_path, panda=panda)}
+    if arena_info:
+        info.update(arena_info)
+    else:
+        info.update(get_arena_info(arch, libc_path,ld_path,panda=panda))
     # malloc_state adjust
     if info['version'] in ['2.27', '2.28']:
         info['main_arena_offset'] -= size_t

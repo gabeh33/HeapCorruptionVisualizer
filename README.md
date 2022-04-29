@@ -55,7 +55,11 @@ git clone https://github.com/panda-re/panda.git
 ```
 More information about installing PANDA can be found [here.](https://panda.re/)
 
-End with an example of getting some data out of the system or using it for a little demo
+If you used the docker container to access panda, then you will have to have to have access to this repo from within the container. The 
+easiest way to do that is, after cloning the repo and making it your working directory, running the following command
+```
+docker run --rm -v $(pwd):/host -it pandare/panda
+```
 
 ## Running the tests
 

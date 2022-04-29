@@ -7,11 +7,12 @@ This is a tool to visualize heap usage of a target program and detect when a hea
 [lacraig2's pandaheapinspect](https://github.com/lacraig2/pandaheapinspect) with a few key differences: 
 * The ability to analyze any target program that uses libc's malloc() function to allocate memory chunks
 * Output the information in a way that is easy to understand and shows how the chunks are stored in memory
-* Detect when a memory leak or corruption attack has occurred
+* Detect when a memory leak or corruption attack has taken place 
 
-## Getting Started
+## Overview
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This section will detail some prerequisites, my goals with the project, motivation, and high-level implementation details. If you would like to try the 
+tool for youself, skip to the [Getting Started](#getting-started) section. 
 
 ### Prerequisites
 
@@ -21,7 +22,7 @@ What things you need to install the software and how to install them
 Give examples
 ```
 
-### Installing
+## Getting Started
 
 A step by step series of examples that tell you how to get a development env running
 

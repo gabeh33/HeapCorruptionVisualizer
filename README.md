@@ -126,9 +126,9 @@ Please feel free to add on to this tool in any way you see fit! It is still a wo
  
 ## Authors
 
-* **Gabe Holmes** - Cybersecurity student at Northeastern University 
-[Linkedin](https://www.linkedin.com/in/gabe-holmes/)
-Email: holmes.ga@northeastern.edu 
+* **Gabe Holmes** - Cybersecurity student at Northeastern University <br>
+[Linkedin](https://www.linkedin.com/in/gabe-holmes/) <br>
+Email: holmes.ga@northeastern.edu  
 
 
 ## Acknowledgments

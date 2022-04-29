@@ -42,19 +42,18 @@ Testing this program relied heavily on my understanding of the heap and knowing 
 
 ## Getting Started
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+The only other dependency besides python to run this program will be PANDA. The easiest way to get access to panda is through doacker. The command to install PANDA's container on your system is 
 
 ```
-Give the example
+docker pull pandare/panda
 ```
 
-And repeat
+Or you can clone thier github repo using the command 
 
 ```
-until finished
+git clone https://github.com/panda-re/panda.git
 ```
+More information about installing PANDA can be found [here.](https://panda.re/)
 
 End with an example of getting some data out of the system or using it for a little demo
 

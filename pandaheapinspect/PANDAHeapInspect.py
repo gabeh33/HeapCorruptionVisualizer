@@ -8,10 +8,9 @@ from heapinspect.layout import DiagramHeap
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         prog='HeapInspect.py',
-        description='''Inspect your heap by a given pid.
-                       Author:lacraig2 (forked from matrix1001)
-                       Github:https://github.com/lacraig2/pandaheapinspect 
-                       (forked from https://github.com/matrix1001/heapinspect)''')
+        description='''Use PANDA to inspect the heap usage of a given binary.
+                       Author:gabeh33 (forked from lacraig2)
+                       Github:https://github.com/gabeh33/HeapViewer''')
     parser.add_argument('--raw', action='store_true', help='Show more detailed chunk info')
     parser.add_argument('--rela', action='store_true', help='Show relative detailed chunk info')
     parser.add_argument('--pretty', action='store_true', help='Output heap info with colors')

@@ -1,1 +1,1 @@
-docker run --rm -v /Users/gabe/Desktop/cs4910/final_project:/host -it pandare/panda
+docker run --rm -v $(pwd):/host -it pandare/panda

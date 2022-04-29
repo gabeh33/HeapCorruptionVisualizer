@@ -82,6 +82,8 @@ The first time you run this program, PANDA will have to download a large .qcow2 
 
 Here is some sample output from running different programs already in the /scripts folder.
 
+### tcache
+
 ```
 python PANDAHeapInspect.py --script tcache 
 ```
@@ -94,13 +96,20 @@ This is because our analysis runs on every malloc() call, but bins only get popu
 Some tcache bins have been populated with freed chunks, and information about those chunks is not displayed. The first tcache bin that is not empty is holding chunks of size 0x21 bytes, and is a singly linked list since there are multiple chunks of that size. Since it is just singly linked, there is no back pointer or prev_size, and they are displayed as 0x0. <br>
 
 There are two more tcache bins with 1 chunk each, the first of these has a chunk of 0x51 bytes and the second has a chunk of 0x61 bytes. The source code for the tcache executable is available in the /scripts folder, so this program can be better understood. 
-### And coding style tests
 
-Explain what these tests test and why
+### fastbins
+```
+python PANDAHeapInspect.py --script fast_bin 
+```
 
-```
-Give an example
-```
+As before, and really with all scripts, there will be an initial section of malloc calls that do not return any useful data. However, once we get some meaningul output we can see that one tcache bin is holding 7 chunks and there is a fastbin holding 2 chunks: 
+<img width="1509" alt="image" src="https://user-images.githubusercontent.com/66029105/166072535-eb5e1d53-5537-4025-b340-1d4efb000c1e.png">
+
+<img width="302" alt="image" src="https://user-images.githubusercontent.com/66029105/166072597-4d9d2f0b-98a3-491d-b9b4-12570e85582a.png">
+
+This is demonstrating that a tcache bin can only hold 7 chunks of one size, and then if more chunks of the same size are freed then they are placed in a fastbin. 
+
+
 
 ## Deployment
 

@@ -7,7 +7,7 @@ This is a command line tool the uses PANDA to visualize heap usage of a target p
 
 ## Overview
 
-This section will detail some prerequisites, my goals with the project, motivation, and high-level implementation details. If you would like to try the 
+This section will detail some prerequisites, goals, motivation, high-level implementation details, and some testing. If you would like to try the 
 tool for youself, skip to the [Getting Started](#getting-started) section. 
 
 ### Prerequisites
@@ -15,7 +15,7 @@ tool for youself, skip to the [Getting Started](#getting-started) section.
 While this tool is meant to be easy to use, in order to get the most out of it you should have some background knowdlege. There are a few topics
 that are core to this project, and information can be found about them here: 
 * [What is the heap?](https://opendsa-server.cs.vt.edu/OpenDSA/Books/CS2/html/HeapMem.html#:~:text=%E2%80%9CHeap%E2%80%9D%20memory%2C%20also%20known,is%20different%20in%20every%20way.)
-* [How does lic manage the heap?](https://azeria-labs.com/heap-exploitation-part-1-understanding-the-glibc-heap-implementation/)
+* [How does libc manage the heap?](https://azeria-labs.com/heap-exploitation-part-1-understanding-the-glibc-heap-implementation/)
 * [What are bins?](https://azeria-labs.com/heap-exploitation-part-2-glibc-heap-free-bins/)
 * [Heap explotation ideas](https://heap-exploitation.dhavalkapil.com/attacks)
 
@@ -34,6 +34,11 @@ Once I passed this step, I was able to formulate a project with some clear goals
 
 PANDA is a tool that uses QEMU to emulate a entire system, and then provides, among other things, a python interface to analyze this system. This makes it 
 possible to run a compiled program through PANDA and use python to analyze its heap usage. More specifically, we register a callback whenever PANDA detects libc's malloc() function being called and run our analysis code. A callback allows us to specify code that will run whenever a certain event happens in our emeulatd system. In this case, the event is malloc() being called by a process and we tell PANDA to then run our analysis code. The user can choose to analyze all malloc() calls, or just calls that happen within the target process. To learn more about PANDA, click [here.](https://panda.re/)
+
+### Testing 
+
+Testing this program relied heavily on my understanding of the heap and knowing what the expected output should be. I wrote test programs, which can be found in the scripts folder and are detailed more below, and tested my tool using those programs. Each one demonstrates some aspect of libc's memory handling, such as first checking the tcache bin for chunks or showing that the fastbin is used after the tcache bin. All of the output that I have observed are in line with what I expected based on the research I have done, but if you find any unexpected behavior let me know!
+
 
 ## Getting Started
 

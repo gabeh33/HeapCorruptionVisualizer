@@ -15,6 +15,7 @@ def get_arch(path):
         64
         >>> print(get_arch('./a_32bit_bin'))
         32
+
     '''
     with open(path, 'rb') as f:
         arch_code = f.read(0x13)[-1]
@@ -39,8 +40,12 @@ def u64(data):
     Return:
         int: Unpacked value.
     '''
-    return struct.unpack('<Q', data.ljust(8, b'\0'))[0]
-
+    try:
+        return struct.unpack('<Q', data.ljust(8, b'\0'))[0]
+    except Exception as e:
+        unpack_string = b'1\x00\x00\x00\x00\x00\x00\x00'
+        print("UNPACKING TEMPLATE STRING")
+        return struct.unpack('<Q', unpack_string.ljust(8, b'\0'))[0]
 
 def u32(data):
     '''Unpack 32bit data with little endian.

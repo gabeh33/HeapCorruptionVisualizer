@@ -30,6 +30,11 @@ Once I passed this step, I was able to formulate a project with some clear goals
 * Detect when bins have been corrupted in some way 
 * Use PANDA to make the tool platform independent 
 
+### PANDA and My Approach
+
+PANDA is a tool that uses QEMU to emulate a entire system, and then provides, among other things, a python interface to analyze this system. This makes it 
+possible to run a compiled program through PANDA and use python to analyze its heap usage. More specifically, we register a callback whenever PANDA detects libc's malloc() function being called and runs our analysis code. A callback allows us to specify code that will run whenever a certain event happens in our emeulatd system. In this case, the event is malloc() being called by a process and we tell PANDA to then run our analysis code. The user can choose to analyze all malloc() calls, or just calls that happen within the target process. 
+
 ## Getting Started
 
 A step by step series of examples that tell you how to get a development env running

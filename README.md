@@ -42,7 +42,7 @@ Testing this program relied heavily on my understanding of the heap and knowing 
 
 ## Getting Started
 
-The only other dependency besides python to run this program will be PANDA. The easiest way to get access to panda is through doacker. The command to install PANDA's container on your system is 
+The only other dependency besides python to run this program will be PANDA. The easiest way to get access to panda is through docker. The command to install PANDA's container on your system is 
 
 ```
 docker pull pandare/panda

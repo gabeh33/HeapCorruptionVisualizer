@@ -91,7 +91,9 @@ This is because our analysis runs on every malloc() call, but bins only get popu
 
 <img width="967" alt="image" src="https://user-images.githubusercontent.com/66029105/166071799-ea3f00c7-c3fc-4ca9-a072-1279b27ec08a.png">
 
+Some tcache bins have been populated with freed chunks, and information about those chunks is not displayed. The first tcache bin that is not empty is holding chunks of size 0x21 bytes, and is a singly linked list since there are multiple chunks of that size. Since it is just singly linked, there is no back pointer or prev_size, and they are displayed as 0x0. <br>
 
+There are two more tcache bins with 1 chunk each, the first of these has a chunk of 0x51 bytes and the second has a chunk of 0x61 bytes. The source code for the tcache executable is available in the /scripts folder, so this program can be better understood. 
 ### And coding style tests
 
 Explain what these tests test and why

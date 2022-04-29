@@ -1,7 +1,4 @@
 # HeapViewer
-Tool to view heap usage and detect corruption
-
-# HeapViewer
 
 This is a command line tool the uses PANDA to visualize heap usage of a target program and detect when a heap corruption attack is possible or has occurred. It is a fork of [lacraig2's pandaheapinspect](https://github.com/lacraig2/pandaheapinspect) with a few key differences: 
 * The ability to analyze any target program that uses libc's malloc() function to allocate memory chunks
@@ -28,7 +25,10 @@ Since starting to study cybersecurity, I have done many stack-based buffer overf
 and learn more about attacking memory beyond basic buffer overflow exploits. This meant that before I had a project in mind, I had to learn how memory is 
 handled in C, what happens behind the scenes that the programmer never sees, and how this can be exploited to possibly hijack control flow of a program. 
 Once I passed this step, I was able to formulate a project with some clear goals in mind:
-* 
+* Create a tool that takes in a compiled C program and outputs information about its heap usage 
+* Have this output mimic how chunks are stored in memory 
+* Detect when bins have been corrupted in some way 
+* Use PANDA to make the tool platform independent 
 
 ## Getting Started
 

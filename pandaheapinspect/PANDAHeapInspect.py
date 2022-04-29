@@ -10,7 +10,7 @@ if __name__ == '__main__':
         prog='HeapInspect.py',
         description='''Use PANDA to inspect the heap usage of a given binary.
                        Author:gabeh33 (forked from lacraig2)
-                       Github:https://github.com/gabeh33/HeapViewer''')
+                       Github:https://github.com/gabeh33/HeapCorruptionVisualizer''')
     parser.add_argument('--raw', action='store_true', help='Show more detailed chunk info')
     parser.add_argument('--rela', action='store_true', help='Show relative detailed chunk info')
     parser.add_argument('--pretty', action='store_true', help='Output heap info with colors')

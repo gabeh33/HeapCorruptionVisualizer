@@ -65,19 +65,32 @@ docker run --rm -v $(pwd):/host -it pandare/panda
 
 The only file that you will have to run is the PANDAHeapInspect.py file. The help message outputs the options available to you, and looks like this 
 
-<img width="977" alt="Screen Shot 2022-04-29 at 5 11 14 PM" src="https://user-images.githubusercontent.com/66029105/166069890-2fe41ef9-52ad-45d4-a1bc-52c4a767e855.png">
+<img width="1072" alt="Screen Shot 2022-04-29 at 5 21 45 PM" src="https://user-images.githubusercontent.com/66029105/166070882-b0a89621-cf7f-4faa-9e5b-a4c93f836d9d.png">
 
-If no option is specified, the program will output chunk information through diagrams. If you find that there are too many chunks and want just the raw data, then you can specify the --raw option. <br>. 
+
+If no option is specified, the program will output chunk information through diagrams. If you find that there are too many chunks and want just the raw data, then you can specify the --raw option. <br> 
 The --script flag is optional, and if it is not specified then it will run the program named 'simple' in the /scripts folder. This is where you can write your own C program, compile it, and place it into the /scripts folder. Then specify the name of the executable and you will be able to analyze it. <br> 
 If the --all flag is set, then information about all heap usage will be displayed, not just from the target program
 
-### Break down into end to end tests
+### Note 
+The first time you run this program, PANDA will have to download a large .qcow2 file. This will take a few minutes, and is normal. The message you get will look like this 
 
-Explain what these tests test and why
+<img width="876" alt="Screen Shot 2022-04-29 at 5 27 05 PM" src="https://user-images.githubusercontent.com/66029105/166071510-838ea355-3ff3-4bf8-b6e6-6b5af5224972.png">
+
+
+## Output
+
+Here is some sample output from running different programs already in the /scripts folder.
 
 ```
-Give an example
+python PANDAHeapInspect.py --script tcache 
 ```
+The first section of output will look like 
+<img width="1344" alt="Screen Shot 2022-04-29 at 5 29 16 PM" src="https://user-images.githubusercontent.com/66029105/166071679-1d6f3034-7bad-428d-bb1c-939dd8edb125.png">
+This is because our analysis runs on every malloc() call, but bins only get populated on calls to free(). Therefore there will be a series of initial hooks that do not return any data. The first meaningful output will look like this: 
+
+<img width="967" alt="image" src="https://user-images.githubusercontent.com/66029105/166071799-ea3f00c7-c3fc-4ca9-a072-1279b27ec08a.png">
+
 
 ### And coding style tests
 
@@ -107,16 +120,16 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Gabe Holmes** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is free to use and build apon
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+* Big acknowledgement to lacraig2 for their original project 
 * Inspiration
 * etc

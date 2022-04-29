@@ -22,9 +22,13 @@ that are core to this project, and information can be found about them here:
 * [What are bins?](https://azeria-labs.com/heap-exploitation-part-2-glibc-heap-free-bins/)
 * [Heap explotation ideas](https://heap-exploitation.dhavalkapil.com/attacks)
 
-```
-Give examples
-```
+### Motivation and Goals 
+
+Since starting to study cybersecurity, I have done many stack-based buffer overflow attacks. While I learned a lot when executing these attacks in a lab environment, these types of attacks are rarely seen in the real world. However, with C being so dominent and the responsibility of managing memory being shifted to programmers memory attacks are still very possible. Many of these attacks deal with the heap memory region, so I wanted to dive into this world
+and learn more about attacking memory beyond basic buffer overflow exploits. This meant that before I had a project in mind, I had to learn how memory is 
+handled in C, what happens behind the scenes that the programmer never sees, and how this can be exploited to possibly hijack control flow of a program. 
+Once I passed this step, I was able to formulate a project with some clear goals in mind:
+* 
 
 ## Getting Started
 

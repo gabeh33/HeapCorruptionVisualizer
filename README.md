@@ -1,4 +1,4 @@
-# HeapViewer
+# HeapCorruptionVisualizer
 
 This is a command line tool the uses PANDA to visualize heap usage of a target program and detect when a heap corruption attack is possible or has occurred. It is a fork of [lacraig2's pandaheapinspect](https://github.com/lacraig2/pandaheapinspect) with a few key differences: 
 * The ability to analyze any target program that uses libc's malloc() function to allocate memory chunks
@@ -120,36 +120,19 @@ Finally, we get to a script that not as simple as the others. In this case we ar
 
 In this case our chunks have now turned red, indicating some type of corruption. We can see that chunk at the top of the bin has address 0x55555555a260, which matches the address of the last chunk in the list. This means that it is possible and likely that multiple future malloc() calls will result in the same pointer being returned. If we take in the first pointer and use it for user input, then future data could be arbitrarily affected by the user!  
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
+Please feel free to add on to this tool in any way you see fit! It is still a work in progress and I plan to continue to add more functionality in future commits. 
+ 
 ## Authors
 
-* **Gabe Holmes** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Gabe Holmes** - Cybersecurity student at Northeastern University 
+[Linkedin](https://www.linkedin.com/in/gabe-holmes/)
+Email: holmes.ga@northeastern.edu 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is free to use and build apon
 
 ## Acknowledgments
 
 * Big acknowledgement to lacraig2 for their original project 
-* Inspiration
-* etc
+* This tool was built as my final project for CS4910, System Security and Dynamic Program Analysis. 
+* Special thank you to Professor Andrew Fasano for his help on this project and throughout the semester

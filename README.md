@@ -102,14 +102,23 @@ There are two more tcache bins with 1 chunk each, the first of these has a chunk
 python PANDAHeapInspect.py --script fast_bin 
 ```
 
-As before, and really with all scripts, there will be an initial section of malloc calls that do not return any useful data. However, once we get some meaningul output we can see that one tcache bin is holding 7 chunks and there is a fastbin holding 2 chunks: 
+As before, and really with all scripts, there will be an initial section of malloc calls that do not return any useful data. However, once we get some meaningul output we can see that one tcache bin is holding 7 chunks and there is a fastbin holding 2 chunks: <br>
 <img width="1509" alt="image" src="https://user-images.githubusercontent.com/66029105/166072535-eb5e1d53-5537-4025-b340-1d4efb000c1e.png">
 
 <img width="302" alt="image" src="https://user-images.githubusercontent.com/66029105/166072597-4d9d2f0b-98a3-491d-b9b4-12570e85582a.png">
 
 This is demonstrating that a tcache bin can only hold 7 chunks of one size, and then if more chunks of the same size are freed then they are placed in a fastbin. 
 
+### double free
+```
+python PANDAHeapInspect.py --script double_free 
+```
 
+Finally, we get to a script that not as simple as the others. In this case we are calling free() on the same pointer twice, a practice known as a double free. This is bad and we can see why with the output of running the above command. <br>
+
+<img width="1383" alt="Screen Shot 2022-04-29 at 5 43 18 PM" src="https://user-images.githubusercontent.com/66029105/166072960-7a2eccf3-8e59-4d52-b434-4432c7dc5cd4.png">
+
+In this case our chunks have now turned red, indicating some type of corruption. We can see that chunk at the top of the bin has address 0x55555555a260, which matches the address of the last chunk in the list. This means that it is possible and likely that multiple future malloc() calls will result in the same pointer being returned. If we take in the first pointer and use it for user input, then future data could be arbitrarily affected by the user!  
 
 ## Deployment
 

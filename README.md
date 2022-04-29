@@ -3,8 +3,7 @@ Tool to view heap usage and detect corruption
 
 # HeapViewer
 
-This is a tool to visualize heap usage of a target program and detect when a heap corruption attack is possible or has occurred. It is a fork of 
-[lacraig2's pandaheapinspect](https://github.com/lacraig2/pandaheapinspect) with a few key differences: 
+This is a command line tool the uses PANDA to visualize heap usage of a target program and detect when a heap corruption attack is possible or has occurred. It is a fork of [lacraig2's pandaheapinspect](https://github.com/lacraig2/pandaheapinspect) with a few key differences: 
 * The ability to analyze any target program that uses libc's malloc() function to allocate memory chunks
 * Output the information in a way that is easy to understand and shows how the chunks are stored in memory
 * Detect when a memory leak or corruption attack has taken place 
@@ -16,7 +15,12 @@ tool for youself, skip to the [Getting Started](#getting-started) section.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+While this tool is meant to be easy to use, in order to get the most out of it you should have some background knowdlege. There are a few topics
+that are core to this project, and information can be found about them here: 
+* [What is the heap?](https://opendsa-server.cs.vt.edu/OpenDSA/Books/CS2/html/HeapMem.html#:~:text=%E2%80%9CHeap%E2%80%9D%20memory%2C%20also%20known,is%20different%20in%20every%20way.)
+* [How does lic manage the heap?](https://azeria-labs.com/heap-exploitation-part-1-understanding-the-glibc-heap-implementation/)
+* [What are bins?](https://azeria-labs.com/heap-exploitation-part-2-glibc-heap-free-bins/)
+* [Heap explotation ideas](https://heap-exploitation.dhavalkapil.com/attacks)
 
 ```
 Give examples

@@ -67,6 +67,10 @@ The only file that you will have to run is the PANDAHeapInspect.py file. The hel
 
 <img width="977" alt="Screen Shot 2022-04-29 at 5 11 14 PM" src="https://user-images.githubusercontent.com/66029105/166069890-2fe41ef9-52ad-45d4-a1bc-52c4a767e855.png">
 
+If no option is specified, the program will output chunk information through diagrams. If you find that there are too many chunks and want just the raw data, then you can specify the --raw option. <br>. 
+The --script flag is optional, and if it is not specified then it will run the program named 'simple' in the /scripts folder. This is where you can write your own C program, compile it, and place it into the /scripts folder. Then specify the name of the executable and you will be able to analyze it. <br> 
+If the --all flag is set, then information about all heap usage will be displayed, not just from the target program
+
 ### Break down into end to end tests
 
 Explain what these tests test and why
